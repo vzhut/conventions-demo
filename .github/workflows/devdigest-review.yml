@@ -28,7 +28,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          DEVDIGEST_POST_AS: pr_comment
+          DEVDIGEST_POST_AS: github_review
         run: |
           if [ ! -f .devdigest/runner/index.mjs ]; then
             echo "DevDigest is not installed on the base branch yet. Merge the install PR, then re-run." >> "$GITHUB_STEP_SUMMARY"
