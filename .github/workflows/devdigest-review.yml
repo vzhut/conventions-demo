@@ -13,7 +13,7 @@ permissions:
 jobs:
   review:
     name: DevDigest Review
-    # Fork PRs get no secrets, so the review cannot run for them.
+    # Fork PRs get no secrets, so the job is skipped for them.
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
@@ -44,10 +44,3 @@ jobs:
           path: devdigest-result.json
           if-no-files-found: ignore
 
-  fork-notice:
-    name: DevDigest Review (fork notice)
-    if: github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: ubuntu-latest
-    steps:
-      - name: Explain the skipped review
-        run: echo "DevDigest review is skipped for pull requests from forks (no secrets are available)." >> "$GITHUB_STEP_SUMMARY"
